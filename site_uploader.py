@@ -18,9 +18,6 @@ def find_objects_iter(root):
     for base, dirs, filenames in os.walk(root):
         for f in filenames:
             yield os.path.join(base, f)
-        for d in dirs:
-            for x in find_objects_iter(os.path.join(base, d)):
-                yield x
 
 
 if __name__ == '__main__':
