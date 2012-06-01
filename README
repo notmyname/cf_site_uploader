@@ -1,0 +1,8 @@
+Usage: site_uploader.py [options] path
+
+Options:
+  -h, --help            show this help message and exit
+  -D DOMAIN, --domain=DOMAIN
+                        Domain to use instead of the container's public URI
+  -c CONTAINER, --container=CONTAINER
+                        Container to use
