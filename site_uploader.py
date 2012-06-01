@@ -36,10 +36,10 @@ if __name__ == '__main__':
     container = conn.create_container(site_container_name)
     # make sure the container is public and has the staticweb metadata
     container.make_public()
-    container.set_staticweb_metadata(index='index.html',
-                                     listings=False,
-                                     error='error.html',
-                                     listings_css=None)
+    container.enable_static_web(index='index.html',
+                                listings=False,
+                                error='error.html',
+                                listings_css=None)
     root = args[0]
     for i in find_objects_iter(root):
         object_name = quote(i[len(root) + 1:])
