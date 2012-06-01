@@ -12,7 +12,10 @@ from urllib import quote
 from optparse import OptionParser
 
 import cloudfiles
-import cf_auth
+try:
+    from cf_auth import username, apikey
+except ImportError:
+    username = apikey = None
 
 def find_objects_iter(root):
     for base, dirs, filenames in os.walk(root):
@@ -25,13 +28,17 @@ if __name__ == '__main__':
     parser = OptionParser(usage=usage)
     parser.add_option('-D', '--domain', dest='domain', default=None,
                   help='Domain to use instead of the container\'s public URI')
-    parser.add_option('-c', '--container', dest='container', default=None,
+    parser.add_option('-c', '--container', dest='container', default='website',
                   help='Container to use')
+    parser.add_option('-u', '--username', dest='username', default=username,
+                  help='Rackspace username')
+    parser.add_option('-k', '--apikey', dest='apikey', default=apikey,
+                  help='Rackspace API key')
 
     options, args = parser.parse_args()
     site_container_name = options.container or 'website'
-    conn = cloudfiles.get_connection(username=cf_auth.username,
-                                     api_key=cf_auth.apikey)
+    conn = cloudfiles.get_connection(username=username,
+                                     api_key=apikey)
     # make sure we have the container
     container = conn.create_container(site_container_name)
     # make sure the container is public and has the staticweb metadata

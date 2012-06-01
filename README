@@ -6,3 +6,7 @@ Options:
                         Domain to use instead of the container's public URI
   -c CONTAINER, --container=CONTAINER
                         Container to use
+  -u USERNAME, --username=USERNAME
+                        Rackspace username
+  -k APIKEY, --apikey=APIKEY
+                        Rackspace API key
